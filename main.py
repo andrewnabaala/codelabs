@@ -1,9 +1,12 @@
 import pandas as pd
+from functions import generate_email
 
-excel_file = "codelabs/data/TestFiles.xlsx"
+excel_file = "data/TestFiles.xlsx"
 all_sheets= pd.read_excel(excel_file, sheet_name=None)
 
-print(all_sheets)
 for sheet_name, sheet_data in all_sheets.items():
-    output_file = f'codelabs/data/{sheet_name}.xlsx'
-    sheet_data.to_excel(output_file, index=False)
+    sheet_data["Email Address"] = sheet_data.apply(generate_email, axis=1)
+    output_file = f'data/{sheet_name}.tsv'
+    sheet_data.to_csv(output_file, sep="\t",  index=False)
+
+
