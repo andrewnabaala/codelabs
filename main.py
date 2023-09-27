@@ -1,5 +1,6 @@
-import pandas as pd
-from functions import generate_email
+import pandas as pd 
+import numpy as np
+from functions.functions import generate_email
 
 excel_file = "data/TestFiles.xlsx"
 all_sheets= pd.read_excel(excel_file, sheet_name=None)
